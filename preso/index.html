@@ -105,8 +105,22 @@
 
 				</section>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 				
-				
+				<!-- AJAX section -->
 				<section>
 					<section>
 						<h2>AJAX<br><small class="fragment">Asynchronous JavaScript and XML</small></h2>
@@ -225,17 +239,25 @@ $myDataArray = array(
 						
 						
 <pre><code contenteditable class="php">&lt;?php
+
 // Setup our data
 $myDataArray = array(
-	&#39;data&#39; =&gt; get_option(&#39;myPluginOption&#39;);
+	&quot;data&quot; =&gt; array(
+			&#39;ajax_url&#39; =&gt; admin_url( &#39;admin-ajax.php&#39; ),
+			&#39;moreData&#39; =&gt; array(
+				&#39;name&#39;=&gt;&#39;Nick&#39;,
+				&#39;job&#39; =&gt; &#39;Developer&#39;,
+				&#39;age&#39; =&gt; &#39;NonYaBiz&#39;
+			)
+		)
 );
 
-// Register &amp; enqueue our script
-wp_register_script( &#39;myScript&#39;, &#39;path/to/myscript.js&#39; );
-wp_enqueue_script( &#39;myScript&#39; );
+// Register &amp;amp; enqueue our script
+wp_register_script( &quot;myScript&quot;, site_url().&quot;/../assets/js/myscript.js&quot;, array(&#39;jquery&#39;), &#39;1.0&#39;,true);
+wp_enqueue_script( &quot;myScript&quot; );
 
 // Pass data to myscript.js
-wp_localize_script( &#39;myScript&#39;, &#39;myDataJson&#39;, $myDataArray );
+wp_localize_script( &quot;myScript&quot;, &quot;myDataJson&quot;, $myDataArray );
 
 // wp_localize_script( $handle, $objectName, $arrayOfValues );
 // $handle - The enqueued script to place the data immedietly before
@@ -253,7 +275,13 @@ wp_localize_script( &#39;myScript&#39;, &#39;myDataJson&#39;, $myDataArray );
 						<h2>Result</h2>
 						
 						<p>The passed data is "echoed" before the script that needs it</p>
-						<pre><code>Paste some code here for an example.</code></pre>
+						<pre><code><script type='text/javascript'>
+/* <![CDATA[ */
+var myDataJson = {"data":{"ajax_url":"http:\/\/presentation.dev\/demo\/wp\/wp-admin\/admin-ajax.php","moreData":{"name":"Nick","job":"Developer","age":"NonYaBiz"}}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://presentation.dev/demo/wp/../assets/js/myscript.js?ver=1.0'></script>
+						</code></pre>
 
 						
 					</section>
