@@ -4,32 +4,31 @@
  * Setup JSON Ajax endpoint for Javascript async access to WP data 
  */
 
-add_action('wp_ajax_my_action', 'my_callback_function'); // Enable for logged-in users
-add_action('wp_ajax_nopriv_my_action', 'my_callback_function'); // Enable for anonymous users
+add_action('wp_ajax_my_action_5', 'my_callback_function_5'); // Enable for logged-in users
+add_action('wp_ajax_nopriv_my_action_5', 'my_callback_function_5'); // Enable for anonymous users
 
 // add_action('wp_ajax_{name_of_action}', 'name_of_function_to_call');
 
-
-function my_callback_function(){
+function my_callback_function_5(){
 
 	// Nonce Security check
 	check_ajax_referer( 'secret-string', 'nonce' );
 
 	// Capability Security check
 	if(!current_user_can('edit_posts')){
-		die('No Way');
+		die("You dont have permission");
 	}
 
 	// Method Security check - must be POST
 	$method = $_SERVER[ 'REQUEST_METHOD' ];
 	if(!$method === 'POST'){
-		die('Nope');
+		die('Invalid Request type');
 	}
 	
 	// Confirm Ajax Headers // Note requires this to be set, luckily jQuery does this
 	if(!strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
 	{
-		die('Still Nope');
+		die('Invalid HTTP request');
 	}
 	   
 	// Setup our data
@@ -104,7 +103,7 @@ function my_action_4_callback(){
 */
 function register_ajax_endpoints($ajax_actions = array()){
 	
-	//Loop through and set up an ajax action for each
+	// Loop through and set up an ajax action for each
 	foreach($ajax_actions as $action => $public){
 
 		if($public){

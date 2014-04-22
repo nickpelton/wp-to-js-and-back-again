@@ -1,0 +1,45 @@
+#displayData{
+	padding: 30px;
+	border:2px solid #ccc;
+}
+
+
+#interaction button{
+	display: block;
+	margin: 0 0 10px 0;
+}
+
+button{
+	margin:0 0 10px 0;
+}
+
+.js-ajax-reset-votes{
+	margin-left: 100px;
+}
+
+.votes_disp{
+	font-size: 20px;
+	display: inline;
+	margin-left: 20px;
+}
+
+.spinner{
+	background:url(../img/ajax-loader.gif);
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	background-size: 100%;
+}
+
+
+.navbar-toggle{
+	background: #333;
+}
+
+.current_page_item{
+	background: #ccc;
+}
+
+.navbar-collapse{
+	padding: 0;
+}
