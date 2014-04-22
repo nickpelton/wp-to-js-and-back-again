@@ -51,7 +51,7 @@ jQuery(document).ready(function(){
 		  	$('#displayData').append("Status: "+myAjaxData.success+", value: "+myAjaxData.data+"<br>");
 
 		  	// enable button
-		  	$self.prop('disabled',false).siblings('button').prop('disabled',false);
+		  	$('#btn_events').find('button').prop('disabled',false);
 		  	$('.spinner').hide();
 
 		});

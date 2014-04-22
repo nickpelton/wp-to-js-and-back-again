@@ -29,23 +29,6 @@ jQuery(document).ready(function(){
 		
 	});
 
-	update_votes = _.debounce(function(){
-
-		// Access WP data using $.ajax()
-		$.ajax({
-			method: "POST",
-			dataType: "JSON",
-			url: myLocalizedData4.ajax_url,
-			data: {action:'save_votes_fast',vote:voteModel.votes},
-
-		}).done(function(myAjaxData){ 
-
-		  	$('#displayData').append("Status: "+myAjaxData.success+", value: "+myAjaxData.data+"<br>");
-
-		});
-
-	},500);
-
 
 	/**
 	 * js-ajax-reset-clicks
@@ -59,27 +42,33 @@ jQuery(document).ready(function(){
 		voteModel.votes = 0;
 		$('.votes').html(voteModel.votes);
 		
-		reset_votes();
+		update_votes(0);
 
 	});
 
-	reset_votes = _.debounce(function(){
+	/**
+	 * Update votes function
+	 * 
+	 * Async update db with new votes count
+	 */
+	update_votes = _.debounce(function(votes){
+
+		newVotes = votes || voteModel.votes;
 
 		// Access WP data using $.ajax()
 		$.ajax({
 			method: "POST",
 			dataType: "JSON",
 			url: myLocalizedData4.ajax_url,
-			data: {action:'reset_votes_fast'},
+			data: {action:'save_votes_fast',vote:newVotes},
 
-		}).done(function(myAjaxData){
+		}).done(function(myAjaxData){ 
 
 		  	$('#displayData').append("Status: "+myAjaxData.success+", value: "+myAjaxData.data+"<br>");
 
 		});
 
 	},500);
-
 
 	
 
