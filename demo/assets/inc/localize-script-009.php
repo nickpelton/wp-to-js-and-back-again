@@ -3,11 +3,12 @@
 // Setup our data
 $myDataArray = array(
 	'ajax_url' => admin_url( 'admin-ajax.php' ),
-	'data'=>get_option('ww_votes_fast')
+	'ajax_nonce' => wp_create_nonce( 'secret-string' ), // add some security
+	'data'=>get_option('ww_votes_secure')
 );
 
 // Pass data to myscript.js on page load
-wp_localize_script( "myScript8", "myLocalizedData4", $myDataArray );
+wp_localize_script( "myScript9", "myLocalizedData5", $myDataArray );
 
 
 // wp_localize_script( $handle, $objectName, $arrayOfValues );

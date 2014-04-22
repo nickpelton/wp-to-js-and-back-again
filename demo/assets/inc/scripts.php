@@ -54,7 +54,7 @@ function my_scripts(){
 
 	if(is_page('s9')){
 		// Register & enqueue our script
-		wp_register_script( "myScript9", site_url()."/assets/js/myscript-9.js", array('jquery'), '1.0',true);
+		wp_register_script( "myScript9", site_url()."/assets/js/myscript-9.js", array('jquery','underscore'), '1.0',true);
 		wp_enqueue_script( "myScript9" );
 	}
 

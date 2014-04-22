@@ -1,230 +1,72 @@
+$ = jQuery.noConflict();
+
 jQuery(document).ready(function(){
 
-	
+	// Have our "state" saved in JS memory
+	var voteModel = {
+		votes : parseInt(myLocalizedData5.data)
+	};
+
+	// Set the initial value on load
+	$('.votes').html(voteModel.votes);
+	$('#displayData').append("Status: true, value: "+voteModel.votes+"<br>");
+
+
+
 	/**
-	 * Accessing data passed to JS from WP on page load
+	 * js-ajax-save-votes
+	 * 
+	 * Save the number of times a user votes on a button
 	 */
 
-	// Place Data in DOM
-	$('#displayData').append("Name from Local: "+myLocalizedData1.data.person.name+"<br>");
+	$('#btn_events').on('click','.js-ajax-save-votes',function(e){
 
+		// Quick change value
+		voteModel.votes += 1;
+		$('.votes').html(voteModel.votes);
 
-
-
-	/**
-	 * Accessing JSON data using AJAX from WP to JS after page load
-	 */
-
-	// Access WP data using $.ajax()
-	$.ajax({
-		method: "POST",
-		dataType: "html",
-		url: myLocalizedData2.ajax_url,
-		data: {action:'my_action_1'},
-
-	}).done(function(myAjaxData){ // note using promise
-
-	  	console.log(myAjaxData);
-
-	  	// Place Data in DOM
-	  	$('#displayData').append("Action 1: "+myAjaxData+"<br>");
-
+		update_votes(voteModel.votes);
+		
 	});
 
 
-
-
-
 	/**
-	 * js-ajax-action-1
+	 * js-ajax-reset-clicks
 	 * 
-	 * Accessing JSON data using AJAX from WP to JS after page load with user action
+	 * Reset the value for number of clicks to zero
 	 */
 
-	$('#interaction').on('click','.js-ajax-action-1',function(){
+	$('#btn_events').on('click','.js-ajax-reset-votes',function(){
+
+		// Quick change value
+		voteModel.votes = 0;
+		$('.votes').html(voteModel.votes);
+		
+		update_votes(0);
+
+	});
+
+	/**
+	 * Update votes function
+	 * 
+	 * Async update db with new votes count
+	 */
+	update_votes = _.debounce(function(votes){
 
 		// Access WP data using $.ajax()
 		$.ajax({
 			method: "POST",
-			dataType: "HTML",
-			url: myLocalizedData2.ajax_url,
-			data: {action:'my_action_1'},
+			dataType: "JSON",
+			url: myLocalizedData5.ajax_url,
+			data: {action:'save_votes_secure',vote:votes, nonce: myLocalizedData5.ajax_nonce },
 
-		}).done(function(myAjaxData){ // note using promise
+		}).done(function(myAjaxData){ 
 
-		  	console.log(myAjaxData);
-
-		  	// Place Data in DOM
-		  	$('#displayData').append("Action 1: "+myAjaxData+"<br>");
+		  	$('#displayData').append("Status: "+myAjaxData.success+", value: "+myAjaxData.data+"<br>");
 
 		});
 
-	});
-
-
-	/**
-	 * js-ajax-action-2
-	 * 
-	 * Accessing JSON data using AJAX from WP to JS after page load with user action
-	 */
-
-	$('#interaction').on('click','.js-ajax-action-2',function(){
-
-		// Access WP data using $.ajax()
-		$.ajax({
-			method: "POST",
-			dataType: "json",
-			url: myLocalizedData2.ajax_url,
-			data: {action:'my_action_1'},
-
-		}).done(function(myAjaxData){ // note using promise
-
-		  	console.log(myAjaxData.data);
-
-		  	// Place Data in DOM
-		  	$('#displayData').append("Name from Ajax: "+myAjaxData.data.person.name+"<br>");
-
-		});
-
-	});
-
-
-	/**
-	 * js-ajax-action-3
-	 * 
-	 * Accessing JSON data using AJAX from WP to JS after page load with user action
-	 */
-
-	$('#interaction').on('click','.js-ajax-action-3',function(){
-
-		// Access WP data using $.ajax()
-		$.ajax({
-			method: "POST",
-			dataType: "json",
-			url: myLocalizedData2.ajax_url,
-			data: {action:'my_action_1'},
-
-		}).done(function(myAjaxData){ // note using promise
-
-		  	console.log(myAjaxData.data);
-
-		  	// Place Data in DOM
-		  	$('#displayData').append("Name from Ajax: "+myAjaxData.data.person.name+"<br>");
-
-		});
-
-	});
-
-
-	/**
-	 * js-ajax-action-4
-	 * 
-	 * Accessing JSON data using AJAX from WP to JS after page load with user action
-	 */
-
-	$('#interaction').on('click','.js-ajax-action-4',function(){
-
-		// Access WP data using $.ajax()
-		$.ajax({
-			method: "POST",
-			dataType: "json",
-			url: myLocalizedData2.ajax_url,
-			data: {action:'my_action_1'},
-
-		}).done(function(myAjaxData){ // note using promise
-
-		  	console.log(myAjaxData.data);
-
-		  	// Place Data in DOM
-		  	$('#displayData').append("Name from Ajax: "+myAjaxData.data.person.name+"<br>");
-
-		});
-
-	});
-
-
-	/**
-	 * js-ajax-action-5
-	 * 
-	 * Accessing JSON data using AJAX from WP to JS after page load with user action
-	 */
-
-	$('#interaction').on('click','.js-ajax-action-5',function(){
-
-		// Access WP data using $.ajax()
-		$.ajax({
-			method: "POST",
-			dataType: "json",
-			url: myLocalizedData2.ajax_url,
-			data: {action:'my_action_1'},
-
-		}).done(function(myAjaxData){ // note using promise
-
-		  	console.log(myAjaxData.data);
-
-		  	// Place Data in DOM
-		  	$('#displayData').append("Name from Ajax: "+myAjaxData.data.person.name+"<br>");
-
-		});
-
-	});
-
-
-	/**
-	 * js-ajax-action-6
-	 * 
-	 * Accessing JSON data using AJAX from WP to JS after page load with user action
-	 */
-
-	$('#interaction').on('click','.js-ajax-action-6',function(){
-
-		// Access WP data using $.ajax()
-		$.ajax({
-			method: "POST",
-			dataType: "json",
-			url: myLocalizedData2.ajax_url,
-			data: {action:'my_action_1'},
-
-		}).done(function(myAjaxData){ // note using promise
-
-		  	console.log(myAjaxData.data);
-
-		  	// Place Data in DOM
-		  	$('#displayData').append("Name from Ajax: "+myAjaxData.data.person.name+"<br>");
-
-		});
-
-	});
-
-
-	/**
-	 * js-ajax-action-7
-	 * 
-	 * Accessing JSON data using AJAX from WP to JS after page load with user action
-	 */
-
-	$('#interaction').on('click','.js-ajax-action-7',function(){
-
-		// Access WP data using $.ajax()
-		$.ajax({
-			method: "POST",
-			dataType: "json",
-			url: myLocalizedData3.ajax_url,
-			data: {action:'my_action_1', nonce: myLocalizedData3.ajax_nonce},
-
-		}).done(function(myAjaxData){ // note using promise
-
-		  	console.log(myAjaxData.data);
-
-		  	// Place Data in DOM
-		  	$('#displayData').append("Name from Ajax: "+myAjaxData.data.person.name+"<br>");
-
-		});
-
-	});
-
-
-	
+	},500);
 
 	
 
