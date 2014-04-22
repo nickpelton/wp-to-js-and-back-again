@@ -16,6 +16,8 @@ function my_local_scripts(){
 		require "localize-script-008.php";
 	}else if(is_page('s9')){
 		require "localize-script-009.php";
+	}else if(is_page('s10')){
+		require "localize-script-010.php";
 	}else{
 		require "localize-script-003.php";
 	}

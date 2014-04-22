@@ -60,7 +60,7 @@ function my_scripts(){
 
 	if(is_page('s10')){
 		// Register & enqueue our script
-		wp_register_script( "myScript10", site_url()."/assets/js/myscript-10.js", array('jquery'), '1.0',true);
+		wp_register_script( "myScript10", site_url()."/assets/js/myscript-10.js", array('jquery','underscore'), '1.0',true);
 		wp_enqueue_script( "myScript10" );
 	}
 }

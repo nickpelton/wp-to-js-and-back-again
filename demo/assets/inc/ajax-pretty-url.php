@@ -1,7 +1,9 @@
 <?php
 
 /**
- * API REST URL setup
+ * API Pretty URL setup
+ *
+ * Ideal if you want to hide WP or build a RESTful interface
  */
 
 add_action('generate_rewrite_rules', 'add_my_non_wp_rewrite_rules');
