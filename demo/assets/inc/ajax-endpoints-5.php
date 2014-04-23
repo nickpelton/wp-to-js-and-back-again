@@ -11,7 +11,7 @@ function save_votes_callback_function(){
 
 	// Set values
 	$votes = $_POST['vote'];
-	$current_votes = get_option("ww_votes");
+	$current_votes = get_option('ww_votes');
 
 	// Check if there are existing votes
 	if(!$current_votes){
@@ -21,7 +21,7 @@ function save_votes_callback_function(){
 	$current_votes += (int) $votes;
 
 	// Update DB record
-	update_option("ww_votes",$current_votes);
+	update_option('ww_votes',$current_votes);
 
 	// Return true in JSON
 	wp_send_json_success($current_votes);
@@ -39,7 +39,7 @@ add_action('wp_ajax_nopriv_reset_votes', 'reset_votes_callback_function'); // En
 function reset_votes_callback_function(){
 
 	// Update DB record
-	update_option("ww_votes",0);
+	update_option('ww_votes',0);
 
 	// Return true in JSON
 	wp_send_json_success(0);
@@ -57,7 +57,7 @@ add_action('wp_ajax_nopriv_get_votes', 'get_votes_callback_function'); // Enable
 function get_votes_callback_function(){
 
 	// Get Votes
-	$votes = get_option("ww_votes");
+	$votes = get_option('ww_votes');
 
 	// Return true in JSON
 	wp_send_json_success($votes);

@@ -33,4 +33,4 @@ require get_template_directory() . '/inc/taxonomies.php';
 require get_template_directory() . '/inc/taxonomies.php';
 
 // Ajax demo
-require ABSPATH.'assets/inc/ajax-demo.php';
+require ABSPATH.'assets/ajax-demo.php';

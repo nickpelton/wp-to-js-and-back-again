@@ -72,17 +72,16 @@
 					<ul>
 						<li>Familiar with WordPress and web development.</li>
 						<li>Have written some JavaScript – be that <a href="http://jquery.org">jQuery</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">vanilla</a>, or just tweaked some open source scripts.</li>
+						<li>You're as awesome as a T-Rex playing drums</li>
 					</ul>
 
 					
 
 				</div>
-					<aside class="notes">
-						
-					</aside>
+				
 				</section>
 
-				<section>
+				<section data-background="/preso/img/circle.png" data-background-size="90%">
 
 					<h2>This talk:</h2>
 					<ul>
@@ -98,36 +97,84 @@
 					<h2>We'll be using:</h2>
 					<ul>
 						<li>WordPress</li>
-						<li>Javascript + jQuery</li>
-						<li>HTML/CSS</li>
+						<li>Javascript</li>
+						<li>jQuery</li>
+						<li>HTML</li>
 						<li>JSON</li>
-						<li>AJAX</li>
 
 					</ul>
 
 				</section>
 
 
+					<section>
+						<h2>Passing data from WP-to-JS<br><small>No AJAX required</small></h2>
+					</section>
+
+
+					<section>
+						<h2>Use case:</h2>
+
+						<p>Passing data to JS on page load from WP.</p><br>
+						<h3>Ideal:</h3>
+						<p>When you need data right away at page load.</p>
+						
+					</section>
+
+					
+					<section>
+						<h2>wp_localize_script();</h2>
+						
+						
+<pre><code contenteditable class="php">// Pass data to myscript.js on page load
+wp_localize_script( &quot;myScript1&quot;, &quot;myLocalizedData1&quot;, $myDataArray );
+
+// wp_localize_script( $handle, $objectName, $arrayOfValues );
+// $handle - The enqueued script to place the data immedietly before
+// $objectName - Name of the JS object that will hold the data
+// $arrayOfValues - Data to pass to JS
+</code></pre>
+
+<small><a href="https://gist.github.com/nickpelton/11144971" target="_blank">Gist</a></small>
+
+	
+						<aside class="notes">
+							
+						</aside>
+					</section>
+
+					<section>
+						<h2>Result</h2>
+						
+						<p>The data is "echoed" before the script that needs it</p>
+						<pre><code>&lt;script type='text/javascript'&gt;
+/* &lt;![CDATA[ */
+var myDataJson = {&quot;data&quot;:&quot;person&quot;:{&quot;name&quot;:&quot;Nick&quot;,&quot;job&quot;:&quot;Developer&quot;}};
+/* ]]&gt; */
+&lt;/script&gt;
+&lt;script type='text/javascript' src='js/myscript.js'&gt;&lt;/script&gt;</code></pre>
+<small><a href="/demo/s1" target="_blank">Example</a></small>
+						
+					</section>
 
 
 
 
 
 
+					<section>
+						<h2>Passing data from WP-to-JS<br><small>Using Ajax</small></h2>
+
+						
+					</section>
 
 
-
-
-
-
-
-				
-				<!-- AJAX section -->
+					<!-- AJAX section -->
 	
 					<section>
 						<h2>AJAX<br><small>Asynchronous JavaScript and XML</small></h2>
 
-						<p  class="fragment">
+						<p>
 							Set of tools to asynchronously communicate with a server <br>in the background without reloading the page.
 						</p>
 
@@ -139,30 +186,17 @@
 
 					</section>
 				
-					<section>
-
-						<h2>What happens during AJAX?<br><small>(simplified)</small></h2>
-						<ol>
-							
-							<li>Javascript in a browser sends a HTTP request to the server</li>
-							<li>The server receives the HTTP request, processes it, and returns a response</li>
-							<li>JS recieves the response back from the server then does something with it.</li>
-
-						</ol>
-						
-					</section>
-
 
 					<section>
 
-						<h2>Normal page load</h2>
+						<h3>Normal page load</h3>
 						<img src="/preso/img/page-load.png" />
 						<small>Rinse &amp; Repeat</small>
 					</section>
 
 					<section>
 
-						<h2>What happens during AJAX?</h2>
+						<h3>What happens during AJAX?</h3>
 						<img src="/preso/img/ajax.png" />
 						<small>All in the background</small>
 						
@@ -205,113 +239,20 @@
 
 					</section>
 					
-			
-
-
-
-
-
-
-
 
 					<section>
-						<h2>Passing data from WP-to-JS<br><small>No Ajax required</small></h2>
+						<h3>Steps to setup AJAX with WP</h3>
+						<br>
+					<ol>
+						<li>WP: Tell JS where to find data</li>
+						<li>WP: Create the data for JS</li>
+						<li>JS: AJAX call to retrieve data</li>
+						<li>JS: Do something with the data</li>
+					</ol>
 
-						
+
 					</section>
 
-
-					<section>
-						<h2>Use case:</h2>
-
-						<p>Passing data to JS on page load from WP.</p><br>
-						<h3>Ideal:</h3>
-						<p>When you need data right away at page load.</p>
-						
-					</section>
-
-					<section>
-						<h2>Inline Script tag</h2>
-						
-						
-<pre><code contenteditable class="php">
-// Setup our data
-$myDataArray = array(
-	'key' =&gt; 'value'
-);
-?&gt; 
-&lt;script type=&quot;text/javascript&quot;&gt;
-	var MyDataJson = &lt;?php json_encode($myDataArray); ?&gt;;
-	// Do something with this data now that it's avalaible in JS
-&lt;/script&gt;
-
-</code></pre>
-<small>Hint: WordPress provides a better way</small>
-
-						<aside class="notes">
-							
-						</aside>
-					</section>
-
-
-
-					<section>
-						<h2>wp_localize_script();</h2>
-						
-						
-<pre><code contenteditable class="php">
-// Pass data to myscript.js on page load
-wp_localize_script( &quot;myScript1&quot;, &quot;myLocalizedData1&quot;, $myDataArray );
-
-// wp_localize_script( $handle, $objectName, $arrayOfValues );
-// $handle - The enqueued script to place the data immedietly before
-// $objectName - Name of the JS object that will hold the data
-// $arrayOfValues - Data to pass to JS
-</code></pre>
-
-<small><a href="https://gist.github.com/nickpelton/11144971" target="_blank">Gist</a></small>
-
-	
-						<aside class="notes">
-							
-						</aside>
-					</section>
-
-					<section>
-						<h2>Result</h2>
-						
-						<p>The data is "echoed" before the script that needs it</p>
-						<pre><code>
-&lt;script type='text/javascript'&gt;
-/* &lt;![CDATA[ */
-var myDataJson = {&quot;data&quot;:&quot;person&quot;:{&quot;name&quot;:&quot;Nick&quot;,&quot;job&quot;:&quot;Developer&quot;}};
-/* ]]&gt; */
-&lt;/script&gt;
-&lt;script type='text/javascript' src='js/myscript.js'&gt;&lt;/script&gt;</code></pre>
-<small><a href="/demo/s1" target="_blank">Example</a></small>
-						
-					</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-					<section>
-						<h2>Passing data from WP-to-JS<br><small>Using Ajax</small></h2>
-
-						
-					</section>
 
 
 					<section>
@@ -327,24 +268,10 @@ var myDataJson = {&quot;data&quot;:&quot;person&quot;:{&quot;name&quot;:&quot;Ni
 						</aside>
 					</section>
 
-					<section>
-						<h2>Two Worlds</h2>
-						
-						<p>The Browser and the Server are indepenant of each other. Neither knows the other exists unless you tell them where to go.</p>
-
-						<p>Just like an A tag link, we need to tell Javascript where it needs to look for new data.</p>
-
-						<aside class="notes">
-							<p></p>
-						</aside>
-					</section>
-
-
 
 					<section>
-						<h2>wp_localize_script();</h2>
-						<pre><code>
-// Setup our data
+						<h3>wp_localize_script();</h3>
+						<pre><code>// Setup our data
 $myDataArray = array(
 	'ajax_url' =&gt; admin_url( 'admin-ajax.php' ),
 );
@@ -359,27 +286,26 @@ wp_localize_script( &quot;myScript2&quot;, &quot;myLocalizedData2&quot;, $myData
 
 
 					<section>
-						<h2>admin-ajax.php</h2>
+						<h3>AJAX actions in WP</h3>
 						
 						
-<pre><code contenteditable class="php">
-// Create an AJAX endpoint for JS to get data from
-// 
-// [site_url]/wp-admin/admin-ajax.php?action=action_name
+<pre><code contenteditable class="php">/**
+ * Setup JSON Ajax endpoint for Javascript async access to WP data 
+ */
 
-// Add ajax actions. "nopriv" is for anonymous in users
-add_action(&#39;wp_ajax_nopriv_action_name&#39;, &#39;callback_function&#39;); 
-add_action(&#39;wp_ajax_action_name&#39;, &#39;callback_function&#39;); 
+add_action('wp_ajax_my_action_1', 'my_callback_function_1');
+add_action('wp_ajax_nopriv_my_action_1', 'my_callback_function_1');
 
-function callback_function(){
+function my_callback_function_1(){
 
-	// Do something
-	die();
+	header('Content-Type: text/html');
+	echo '&lt;p&gt;HTML from WP for Javascript to use&lt;/p&gt;';
+	die(); // Prevent WP -1
 
 }
 </code></pre>
 
-<small><a href="https://gist.github.com/nickpelton/11147744" target="_blank">Gist</a></small><br>
+<small><a href="https://gist.github.com/nickpelton/11196063" target="_blank">Gist</a></small><br>
 <small><a href="/demo/wp-admin/admin-ajax.php?action=my_action_1" target="_blank">Example</a></small>
 	
 						
@@ -388,7 +314,7 @@ function callback_function(){
 
 
 					<section>
-						<h2>JS (jQuery) to get the data</h2>
+						<h3>JS (jQuery) to get the data</h3>
 						<pre><code contenteditable class="javascript">// Access WP data using $.ajax()
 $.ajax({
 	method: &quot;POST&quot;,
@@ -406,30 +332,21 @@ $.ajax({
 						<small><a href="/demo/s3/" target="_blank">Example</a></small>
 				</section>
 
-		
+
+
 			<section>
-				
 				<h2>Let's load some posts</h2>
-
-				<p>Bring it full circle</p>
-
-			</section>
-
-
-			<section>
-				
-				<h2>Steps</h2>
+				<h3>Steps</h3>
 				<ol>
-					<li>Localize the Ajax URL for JS</li>
-					<li>Create new Ajax action (endpoint) in WP</li>
-					<li>Load the latest posts and return in JSON</li>
-					<li>Add data to the page using JS</li>
+					<li>WP: Tell JS where to point using wp_localize_script()</li>
+					<li>WP: Create new Ajax action and return post data</li>
+					<li>JS: AJAX call to retrieve data and add to page</li>
 				</ol>
 
 			</section>
 
 			<section>
-				<h2><small>Loclalize the Ajax URL for JS</small></h2>
+				<h3>WP: Tell JS where to point using wp_localize_script()</h3>
 				<pre><code>
 // Setup our data
 $myDataArray = array(
@@ -440,24 +357,10 @@ $myDataArray = array(
 wp_localize_script( &quot;myScript4&quot;, &quot;myLocalizedData3&quot;, $myDataArray );</code></pre>
 			</section>
 
-			<section>
-				<h2><small>Create new Ajax action (endpoint) in WP</small></h2>
-				<pre><code>
-add_action('wp_ajax_my_action_4', 'my_callback_function_4');
-add_action('wp_ajax_nopriv_my_action_4', 'my_callback_function_4');
-
-function my_callback_function_4(){
-
-	// Do something
-	die();
-
-}
-</code></pre>
-			</section>
-
+	
 
 			<section>
-				<h2><small>Load latest posts and return in JSON</small></h2>
+				<h3>WP: Create new Ajax action and return post data</h3>
 				<pre><code>add_action('wp_ajax_my_action_4', 'my_callback_function_4');
 add_action('wp_ajax_nopriv_my_action_4', 'my_callback_function_4');
 
@@ -481,7 +384,7 @@ function my_callback_function_4(){
 			</section>
 
 			<section>
-				<h2><small>Add data to the page using JS</small></h2>
+				<h3>JS: AJAX call to retrieve data</h3>
 				<pre><code contenteditable class="javascript">$.ajax({
 	method: &quot;POST&quot;,
 	dataType: &quot;JSON&quot;,

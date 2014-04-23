@@ -12,14 +12,15 @@ function save_votes_secure_callback_function(){
 	// Check ajax security
 	security_check();
 
-	// Set values
-	$clicks = $_POST['vote'];
+	// Set values, Sanatize data
+	$votes = intval( $_POST['vote']);
+	if(!$votes){ wp_send_json_error('No vote value set'); }
 
 	// Update DB record
-	update_option("ww_votes_secure",(int) $clicks);
+	update_option('ww_votes_secure',$votes);
 
 	// Return true in JSON
-	wp_send_json_success($clicks);
+	wp_send_json_success($votes);
 
 }
 
@@ -31,7 +32,7 @@ function security_check(){
 
 	// Capability Security check
 	if(!current_user_can('edit_posts')){
-		die("You dont have permission");
+		die('Permission Denied');
 	}
 
 	// Method Security check - must be POST

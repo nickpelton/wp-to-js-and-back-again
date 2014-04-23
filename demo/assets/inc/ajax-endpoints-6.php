@@ -11,7 +11,7 @@ function save_votes_async_callback_function(){
 
 	// Set values
 	$clicks = $_POST['vote'];
-	$current_votes = get_option("ww_votes_async");
+	$current_votes = get_option('ww_votes_async');
 
 	// Check if there are existing votes
 	if(!$current_votes){
@@ -21,7 +21,7 @@ function save_votes_async_callback_function(){
 	$current_votes += (int) $clicks;
 
 	// Update DB record
-	update_option("ww_votes_async",$current_votes);
+	update_option('ww_votes_async',$current_votes);
 
 	sleep(rand(0,3)); // show how ajax is syncronus
 
@@ -41,7 +41,7 @@ add_action('wp_ajax_nopriv_reset_votes_async', 'reset_votes_async_callback_funct
 function reset_votes_async_callback_function(){
 
 	// Update DB record
-	update_option("ww_votes_async",0);
+	update_option('ww_votes_async',0);
 
 	sleep(rand(0,3)); // show how ajax is syncronus
 
@@ -62,7 +62,7 @@ add_action('wp_ajax_nopriv_get_votes_async', 'get_votes_async_callback_function'
 function get_votes_async_callback_function(){
 
 	// Get Votes
-	$votes = get_option("ww_votes");
+	$votes = get_option('ww_votes_async');
 
 	sleep(rand(0,3)); // show how ajax is syncronus
 
