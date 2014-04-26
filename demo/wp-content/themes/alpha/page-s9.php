@@ -20,12 +20,7 @@ get_header(); ?>
 
 				<?php get_template_part( 'content', 'page' ); ?>
 				<br>
-				<div id="btn_events">
-					<button class="js-ajax-save-votes btn">Upvote</button> <div class="votes_disp">Votes: <span class="votes">0</span> <span class="spinner" style="display:none;"></span></div>
-					
-					<button class="js-ajax-reset-votes btn btn-sm">Reset votes</button>
-				</div>
-				<br>
+				
 				<div id="displayData"></div>
 
 			<?php endwhile; // end of the loop. ?>

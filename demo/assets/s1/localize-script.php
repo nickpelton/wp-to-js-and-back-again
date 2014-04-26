@@ -1,5 +1,8 @@
 <?php
 
+// enque script
+wp_enqueue_script( "myScript", site_url()."/assets/s1/myscript.js", array('jquery'), '1.0',true);
+
 // Setup our data
 $myDataArray = array(
 	'data' => array( // Add some data

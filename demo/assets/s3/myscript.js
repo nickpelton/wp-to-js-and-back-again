@@ -11,22 +11,16 @@ jQuery(document).ready(function(){
 		// Access WP data using $.ajax()
 		$.ajax({
 			method: "POST",
-			dataType: "JSON",
+			dataType: "HTML",
 			url: myLocalizedData.ajax_url,
-			data: {action:'my_action_3'},
+			data: {action:'my_action_1'},
 
 		}).done(function(myAjaxData){ // note using promise
 
-		  	console.log(myAjaxData);
-
-		  	// Build html from our data
-		  	html = '<ul>';
-		  	html += '<li>'+myAjaxData.data.person.name+'</li>';
-		  	html += '<li>'+myAjaxData.data.person.job+'</li>';
-		  	html += '<ul>';
+			console.log();
 
 		  	// Place Data in DOM
-		  	$('#displayData').append(html);
+		  	$('#displayData').append(myAjaxData);
 
 		});
 

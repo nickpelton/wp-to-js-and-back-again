@@ -12,15 +12,12 @@ function save_votes_callback_function(){
 	// Set values
 	$votes = $_POST['vote'];
 	$current_votes = get_option('ww_votes');
-
-	// Check if there are existing votes
-	if(!$current_votes){
-		$current_votes = 0;
-	}
+	if(!$current_votes){ $current_votes = 0; }
+		
 	// Add votes
 	$current_votes += (int) $votes;
 
-	// Update DB record
+	// Update DB
 	update_option('ww_votes',$current_votes);
 
 	// Return true in JSON

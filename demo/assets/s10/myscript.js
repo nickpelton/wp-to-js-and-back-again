@@ -4,7 +4,7 @@ jQuery(document).ready(function(){
 
 	// Have our "state" saved in JS memory
 	var voteModel = {
-		votes : parseInt(myLocalizedData10.data)
+		votes : parseInt(myLocalizedData.data)
 	};
 
 	// Set the initial value on load
@@ -57,8 +57,8 @@ jQuery(document).ready(function(){
 		$.ajax({
 			method: "POST",
 			dataType: "JSON",
-			url: myLocalizedData10.ajax_url,
-			data: {action:'save_votes_secure',vote:votes, nonce: myLocalizedData10.ajax_nonce },
+			url: myLocalizedData.ajax_url,
+			data: {action:'save_votes_secure',vote:votes, nonce: myLocalizedData.ajax_nonce },
 
 		}).done(function(myAjaxData){ 
 

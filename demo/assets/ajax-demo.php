@@ -1,8 +1,5 @@
 <?php
 
-// Load scripts
-require 'inc/scripts.php';
-
 // Pretty Ajax URL
 require 'inc/ajax-pretty-url.php';
 

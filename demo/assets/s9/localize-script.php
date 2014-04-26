@@ -1,10 +1,12 @@
 <?php
 
+// enque script
+wp_enqueue_script( "myScript", site_url()."/assets/s9/myscript.js", array('jquery'), '1.0',true);
+
 // Setup our data
 $myDataArray = array(
 	'ajax_url' => admin_url( 'admin-ajax.php' ),
-	'ajax_nonce' => wp_create_nonce( 'secret-string' ), // add some security
-	'data'=>get_option('ww_votes_secure')
+	'ajax_nonce' => wp_create_nonce( 'my-secret-string' )
 );
 
 // Pass data to myscript.js on page load

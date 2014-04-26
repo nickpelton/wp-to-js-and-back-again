@@ -16,18 +16,18 @@ jQuery(document).ready(function(){
 			method: "POST",
 			dataType: "JSON",
 			url: myLocalizedData.ajax_url,
-			data: {action:"my_action_4"},
+			data: {action:"load_posts"},
 
 		}).done(function(myAjaxData){
 			
-			$html = "";
+			html = "";
 
 		  	$.each(myAjaxData,function(index,value){
-		  		$html += "<h3>"+value.post_title+"</h3><br>";
-		  		$html += "<div>"+value.post_content+"</div><br><br>";
+		  		html += "<h3>"+value.post_title+"</h3><br>";
+		  		html += "<div>"+value.post_content+"</div><br><br>";
 		  	});
 		  	
-		  	$('#displayData').append($html); // Note one insert
+		  	$('#displayData').append(html); // Note one insert
 
 		});
 

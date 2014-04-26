@@ -8,7 +8,7 @@ $myDataArray = array(
 );
 
 // Pass data to myscript.js on page load
-wp_localize_script( "myScript10", "myLocalizedData10", $myDataArray );
+wp_localize_script( "myScript", "myLocalizedData", $myDataArray );
 
 
 // wp_localize_script( $handle, $objectName, $arrayOfValues );
