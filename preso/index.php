@@ -1,7 +1,7 @@
 <?php
 
-	define('URL',"http://".$_SERVER['HTTP_HOST']);
-
+	define('URL',"http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+	
 ?><!doctype html>
 <html lang="en">
 
@@ -18,11 +18,11 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="<?php echo URL; ?>/preso/css/reveal.min.css">
-		<link rel="stylesheet" href="<?php echo URL; ?>/preso/css/theme/custom.css" id="theme">
+		<link rel="stylesheet" href="<?php echo URL; ?>css/reveal.min.css">
+		<link rel="stylesheet" href="<?php echo URL; ?>css/theme/custom.css" id="theme">
 
 		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="<?php echo URL; ?>/preso/lib/css/zenburn.css">
+		<link rel="stylesheet" href="<?php echo URL; ?>lib/css/zenburn.css">
 
 		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
 		<script>
@@ -46,7 +46,7 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-				<section data-background-color="#7e7e7e" data-background-image="/preso/img/there-and-back.png" data-background-size="fit">
+				<section data-background-color="#7e7e7e" data-background-image="<?php echo URL; ?>/img/there-and-back.png" data-background-size="fit">
 					<h1 class="white">WP-to-JS <small>and</small><br>Back Again</h1>
 					<h3 class="white">Primer on AJAX and JavaScript with WordPress</h3>
 					<p class="white">
@@ -65,7 +65,7 @@
 				</section>
 
 
-				<section data-background="<?php echo URL; ?>/preso/img/you.png" data-background-size="70%" data-background-repeat="repeat">
+				<section data-background="<?php echo URL; ?>/img/you.png" data-background-size="70%" data-background-repeat="repeat">
 					
 				<div style="background:rgba(0,0,0,.6); padding:20px;" class="white">
 					<h2 class="white">YOU</h2>
@@ -80,7 +80,7 @@
 				
 				</section>
 
-				<section data-background="<?php echo URL; ?>/preso/img/circle.png" data-background-size="90%">
+				<section data-background="<?php echo URL; ?>/img/circle.png" data-background-size="90%">
 
 					<ul>
 						<li>How to get data from <strong>WordPress</strong> to <strong>JS</strong></li>
@@ -101,7 +101,7 @@
 							Set of tools to asynchronously communicate with a server <br>in the background without reloading the page.
 						</p>
 
-						<img src="<?php echo URL; ?>/preso/img/what.gif"  class="fragment"/>
+						<img src="<?php echo URL; ?>/img/what.gif"  class="fragment"/>
 
 						
 
@@ -125,14 +125,14 @@
 					<section>
 
 						<h3>Normal page load</h3>
-						<img src="<?php echo URL; ?>/preso/img/page-load.png" />
+						<img src="<?php echo URL; ?>/img/page-load.png" />
 						<small>Synchronous: Rinse &amp; Repeat</small>
 					</section>
 
 					<section>
 
 						<h3>What happens during AJAX?</h3>
-						<img src="<?php echo URL; ?>/preso/img/ajax.png" />
+						<img src="<?php echo URL; ?>/img/ajax.png" />
 						<small>Asynchronous: In the background</small>
 						
 					</section>
@@ -172,7 +172,7 @@
 
 
 					<section>
-					<img src="<?php echo URL; ?>/preso/img/prepare.jpg" width="500" />
+					<img src="<?php echo URL; ?>/img/prepare.jpg" width="500" />
 				</section>
 
 
@@ -245,7 +245,7 @@ $.ajax({
 
 
 				<section>
-					<img src="<?php echo URL; ?>/preso/img/mind_blown.gif" width="500" />
+					<img src="<?php echo URL; ?>/img/mind_blown.gif" width="500" />
 				</section>
 
 
@@ -326,7 +326,7 @@ function load_post_callback(){
 						<small><a href="<?php echo URL; ?>/demo/s4" target="_blank">Demo</a></small>
 				</section>
 
-			<section data-background="<?php echo URL; ?>/preso/img/circle.png" data-background-size="90%">
+			<section data-background="<?php echo URL; ?>/img/circle.png" data-background-size="90%">
 
 					<ul>
 						<li><del>How to get data from <strong>WordPress</strong> to <strong>JS</strong></del></li>
@@ -437,12 +437,12 @@ function save_votes_callback_function(){
 
 
 			<section>
-					<img src="<?php echo URL; ?>/preso/img/amaze.gif" width="500" />
+					<img src="<?php echo URL; ?>/img/amaze.gif" width="500" />
 				</section>
 
 
 
-				<section data-background="<?php echo URL; ?>/preso/img/circle.png" data-background-size="90%">
+				<section data-background="<?php echo URL; ?>/img/circle.png" data-background-size="90%">
 
 					<ul>
 						<li><del>How to get data from <strong>WordPress</strong> to <strong>JS</strong></del></li>
@@ -644,7 +644,7 @@ function secure_endpoint_callback_function(){
 
 
 			<section>
-					<img src="<?php echo URL; ?>/preso/img/allthethings.jpg" width="500" />
+					<img src="<?php echo URL; ?>/img/allthethings.jpg" width="500" />
 			</section>
 
 
@@ -664,8 +664,8 @@ function secure_endpoint_callback_function(){
 
 		</div>
 
-		<script src="<?php echo URL; ?>/preso/lib/js/head.min.js"></script>
-		<script src="<?php echo URL; ?>/preso/js/reveal.min.js"></script>
+		<script src="<?php echo URL; ?>/lib/js/head.min.js"></script>
+		<script src="<?php echo URL; ?>/js/reveal.min.js"></script>
 
 		<script>
 
@@ -686,11 +686,11 @@ function secure_endpoint_callback_function(){
 
 				// Optional libraries used to extend on reveal.js
 				dependencies: [
-					{ src: '<?php echo URL; ?>/presp/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '<?php echo URL; ?>/lib/js/classList.js', condition: function() { return !document.body.classList; } },
 					//{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					//{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: '<?php echo URL; ?>/preso/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: '<?php echo URL; ?>/preso/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '<?php echo URL; ?>/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '<?php echo URL; ?>/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
 					// { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
 				]
 			});
