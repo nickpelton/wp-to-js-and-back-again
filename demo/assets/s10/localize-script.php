@@ -1,5 +1,8 @@
 <?php
 
+// enque script
+wp_enqueue_script( "myScript", site_url()."/assets/s8/myscript.js", array('jquery','underscore'), '1.0',true);
+
 // Setup our data
 $myDataArray = array(
 	'ajax_url' => site_url().'/myapi/',

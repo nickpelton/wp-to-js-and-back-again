@@ -1,4 +1,8 @@
-<!doctype html>
+<?php
+
+	define('URL',"http://".$_SERVER['HTTP_HOST']);
+
+?><!doctype html>
 <html lang="en">
 
 	<head>
@@ -14,11 +18,11 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/custom.css" id="theme">
+		<link rel="stylesheet" href="<?php echo URL; ?>/preso/css/reveal.min.css">
+		<link rel="stylesheet" href="<?php echo URL; ?>/preso/css/theme/custom.css" id="theme">
 
 		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="<?php echo URL; ?>/preso/lib/css/zenburn.css">
 
 		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
 		<script>
@@ -26,13 +30,13 @@
 				var link = document.createElement( 'link' );
 				link.rel = 'stylesheet';
 				link.type = 'text/css';
-				link.href = 'css/print/pdf.css';
+				link.href = '<?php echo URL; ?>/css/print/pdf.css';
 				document.getElementsByTagName( 'head' )[0].appendChild( link );
 			}
 		</script>
 
 		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
+		<script src="<?php echo URL; ?>/lib/js/html5shiv.js"></script>
 		<![endif]-->
 	</head>
 
@@ -44,7 +48,7 @@
 			<div class="slides">
 				<section data-background-color="#7e7e7e" data-background-image="/preso/img/there-and-back.png" data-background-size="fit">
 					<h1 class="white">WP-to-JS <small>and</small><br>Back Again</h1>
-					<h3 class="white">Primer on AJAX and Javascript with WordPress</h3>
+					<h3 class="white">Primer on AJAX and JavaScript with WordPress</h3>
 					<p class="white">
 						<small>Created by <a href="http://nickpelton.com" class="white">Nick Pelton</a> / <a href="http://twitter.com/nickpelton" class="white">@nickpelton </a></small>
 					</p>
@@ -54,14 +58,14 @@
 					<h2><a href="http://twitter.com/nickpelton">@nickpelton </a></h2>
 					Technology Director at <a href="http://westwerk.com">Westwerk</a> / <a href="http://werkpress.com">WerkPress</a>
 					</p>
-					<p>I'm a WordPress focused software developer. I spend most my days developing, planning, and consulting for WordPress based applications.
+					<p>I'm a WordPress-focused software developer. I spend most my days developing, planning, and consulting for WordPress-based applications.
 					</p>
-					<p>I'm also working on my latest startup <a href="http://trackjs.com">{Track:js}</a>,<br> a JavaScript Error Tracking Service.</p>
+					<p>I'm also working on my latest startup <a href="http://trackjs.com">{Track:js}</a>,<br> a JavaScript error tracking service.</p>
 
 				</section>
 
 
-				<section data-background="/preso/img/you.png" data-background-size="70%" data-background-repeat="repeat">
+				<section data-background="<?php echo URL; ?>/preso/img/you.png" data-background-size="70%" data-background-repeat="repeat">
 					
 				<div style="background:rgba(0,0,0,.6); padding:20px;" class="white">
 					<h2 class="white">YOU</h2>
@@ -69,14 +73,14 @@
 					<ul>
 						<li>Familiar with WordPress and web development.</li>
 						<li>Have written some JavaScript – be that <a href="http://jquery.org">jQuery</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">vanilla</a>, or just tweaked some open source scripts.</li>
-						<li>You're as awesome as a T-Rex playing drums</li>
+						<li>Love building cool stuff</li>
 					</ul>
 
 				</div>
 				
 				</section>
 
-				<section data-background="/preso/img/circle.png" data-background-size="90%">
+				<section data-background="<?php echo URL; ?>/preso/img/circle.png" data-background-size="90%">
 
 					<ul>
 						<li>How to get data from <strong>WordPress</strong> to <strong>JS</strong></li>
@@ -97,7 +101,7 @@
 							Set of tools to asynchronously communicate with a server <br>in the background without reloading the page.
 						</p>
 
-						<img src="/preso/img/what.gif"  class="fragment"/>
+						<img src="<?php echo URL; ?>/preso/img/what.gif"  class="fragment"/>
 
 						
 
@@ -108,7 +112,7 @@
 					<h2>Tools we'll be using for AJAX:</h2>
 					<ul>
 						<li>WordPress</li>
-						<li>Javascript</li>
+						<li>JavaScript</li>
 						<li>jQuery</li>
 						<li>HTML</li>
 						<li>JSON</li>
@@ -121,14 +125,14 @@
 					<section>
 
 						<h3>Normal page load</h3>
-						<img src="/preso/img/page-load.png" />
+						<img src="<?php echo URL; ?>/preso/img/page-load.png" />
 						<small>Synchronous: Rinse &amp; Repeat</small>
 					</section>
 
 					<section>
 
 						<h3>What happens during AJAX?</h3>
-						<img src="/preso/img/ajax.png" />
+						<img src="<?php echo URL; ?>/preso/img/ajax.png" />
 						<small>Asynchronous: In the background</small>
 						
 					</section>
@@ -138,7 +142,7 @@
 						<h2>Goals of Ajax?</h2>
 						<ul>
 							<li>Preserving the browser state</li>
-							<li>Speed</li>
+							<li>Faster and more responsive applications</li>
 							<li>Increase user experience</li>
 						</ul>
 
@@ -147,11 +151,9 @@
 
 					<section>
 						<h3>Use case:</h3>
-
 						
 						<p>Need new data from WP after page load.</p>
-						
-
+					
 						
 					</section>
 
@@ -169,7 +171,9 @@
 
 
 
-					
+					<section>
+					<img src="<?php echo URL; ?>/preso/img/prepare.jpg" width="500" />
+				</section>
 
 
 					<section>
@@ -212,7 +216,7 @@ function my_callback_function_1(){
 
 }</code></pre>
 
-<small><a href="/demo/wp-admin/admin-ajax.php?action=my_action_1" target="_blank">Example</a></small>
+<small><a href="<?php echo URL; ?>/demo/wp-admin/admin-ajax.php?action=my_action_1" target="_blank">Example</a></small>
 	
 						
 					</section>
@@ -236,12 +240,12 @@ $.ajax({
 
 });</code></pre>
 						<small><a href="https://gist.github.com/nickpelton/11147744" target="_blank">Gist</a></small><br>
-						<small><a href="/demo/s3/" target="_blank">Example</a></small>
+						<small><a href="<?php echo URL; ?>/demo/s3/" target="_blank">Example</a></small>
 				</section>
 
 
 				<section>
-					<img src="/preso/img/mind_blown.gif" width="500" />
+					<img src="<?php echo URL; ?>/preso/img/mind_blown.gif" width="500" />
 				</section>
 
 
@@ -319,10 +323,10 @@ function load_post_callback(){
   	$('#displayData').append(html); // Note one insert
 });</code></pre>
 						<small><a href="https://gist.github.com/nickpelton/11327034" target="_blank">Gist</a></small><br>
-						<small><a href="/demo/s4" target="_blank">Demo</a></small>
+						<small><a href="<?php echo URL; ?>/demo/s4" target="_blank">Demo</a></small>
 				</section>
 
-			<section data-background="/preso/img/circle.png" data-background-size="90%">
+			<section data-background="<?php echo URL; ?>/preso/img/circle.png" data-background-size="90%">
 
 					<ul>
 						<li><del>How to get data from <strong>WordPress</strong> to <strong>JS</strong></del></li>
@@ -337,7 +341,7 @@ function load_post_callback(){
 						
 						<h3>Use case:</h3>
 						
-						<p>User events creates new data, we want to save it.</p>
+						<p>User event creates new data, we want to save it.</p>
 						
 
 						
@@ -426,19 +430,19 @@ function save_votes_callback_function(){
 
 });</code></pre>
 						<small><a href="https://gist.github.com/nickpelton/8b269b463112ebf74a3c" target="_blank">Gist</a></small><br>
-						<small><a href="/demo/s5/" target="_blank">Example</a></small>
+						<small><a href="<?php echo URL; ?>/demo/s5/" target="_blank">Example</a></small>
 				</section>
 
 			
 
 
 			<section>
-					<img src="/preso/img/amaze.gif" width="500" />
+					<img src="<?php echo URL; ?>/preso/img/amaze.gif" width="500" />
 				</section>
 
 
 
-				<section data-background="/preso/img/circle.png" data-background-size="90%">
+				<section data-background="<?php echo URL; ?>/preso/img/circle.png" data-background-size="90%">
 
 					<ul>
 						<li><del>How to get data from <strong>WordPress</strong> to <strong>JS</strong></del></li>
@@ -456,14 +460,30 @@ function save_votes_callback_function(){
 
 				<section>
 				
-						<h3>AJAX Security: Nounce</h3>
+						<h3>AJAX Security</h3>
 						<br>
-						
 						<ul>
-							<li>Nounce: Number-Once</li>
+						<li>Sanitize all inputs</li>
+						</ul>
+						
+					<div>
+					
+					</div>
+
+			</section>
+
+			<section>
+				
+						<h3>AJAX Security</h3>
+						<br>
+						<ul>
+						<li>Use Nonce</li>
+						<ul>
+							<li>Nonce: Number Once</li>
 							<li>Used Verify AJAX calls</li>
 							<li>Expires after a timeframe</li>
 							
+						</ul>
 						</ul>
 					<div>
 					<br>
@@ -474,7 +494,7 @@ function save_votes_callback_function(){
 
 
 			<section>
-						<h3>WP: Create and localize a Nounce</h3>
+						<h3>WP: Create and localize a Nonce</h3>
 						<h4>wp_create_nonce($secretString);</h4>
 						<pre><code>// Enqueue myscript.js
 wp_enqueue_script( &quot;myScript&quot;, 'myscript.js', array(&quot;jquery&quot;), '1.0', true );
@@ -494,7 +514,7 @@ wp_localize_script( &quot;myScript&quot;, &quot;myLocalizedData&quot;, $myDataAr
 					</section>
 
 			<section>
-						<h3>Get Nounce from Localized data,<br>send with AJAX calls</h3>
+						<h3>Get Nonce from Localized data,<br>send with AJAX calls</h3>
 						
 						<pre><code class="javascript">$.ajax({
 	method: "POST",
@@ -516,7 +536,7 @@ wp_localize_script( &quot;myScript&quot;, &quot;myLocalizedData&quot;, $myDataAr
 				</section>
 
 			<section>
-				<h3>Validate Nounce</h3>
+				<h3>Validate Nonce</h3>
 				<h4>check_ajax_referer($secretString,$name)</h4>
 				<pre><code>add_action('wp_ajax_secure_endpoint', 'secure_endpoint_callback_function');
 
@@ -530,7 +550,7 @@ function secure_endpoint_callback_function(){
 }
 </code></pre>
 		<small><a href="https://gist.github.com/nickpelton/11327670" target="_blank">Gist</a></small><br>
-						<small><a href="/demo/s9/" target="_blank">Example</a></small>
+						<small><a href="<?php echo URL; ?>/demo/s9/" target="_blank">Example</a></small>
 			</section>
 
 
@@ -549,7 +569,7 @@ function secure_endpoint_callback_function(){
 						</ol>
 					<div>
 					<br>
-					<small><a href="/demo/s6" target="_blank">Demo</a></small>
+					<small><a href="<?php echo URL; ?>/demo/s6" target="_blank">Demo</a></small>
 					</div>
 
 			</section>
@@ -566,7 +586,7 @@ function secure_endpoint_callback_function(){
 						</ol>
 					<div>
 					<br>
-					<small><a href="/demo/s7" target="_blank">Demo</a></small>
+					<small><a href="<?php echo URL; ?>/demo/s7" target="_blank">Demo</a></small>
 					</div>
 
 			</section>
@@ -582,7 +602,7 @@ function secure_endpoint_callback_function(){
 						</ol>
 					<div>
 					<br>
-					<small><a href="/demo/s8" target="_blank">Demo</a></small>
+					<small><a href="<?php echo URL; ?>/demo/s8" target="_blank">Demo</a></small>
 					</div>
 
 			</section>
@@ -614,8 +634,8 @@ function secure_endpoint_callback_function(){
 								<li>Live search filter</li>
 								<li>Track statistics</li>
 								<li>WordPress Media Library (3.0+)</li>
-								<li>Automate a Foosballtable (We did this!)
-								<li>Much more.</li>
+								<li>Automate a Foosball table (We did this!)
+								
 							</ul>
 						</div>
 						
@@ -624,7 +644,7 @@ function secure_endpoint_callback_function(){
 
 
 			<section>
-					<img src="/preso/img/allthethings.jpg" width="500" />
+					<img src="<?php echo URL; ?>/preso/img/allthethings.jpg" width="500" />
 			</section>
 
 
@@ -637,15 +657,15 @@ function secure_endpoint_callback_function(){
 					<a href="http://trackjs.com">{Track:js}</a>
 
 					
-				</section>
+			</section>
 
 		
 			</div>
 
 		</div>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.min.js"></script>
+		<script src="<?php echo URL; ?>/preso/lib/js/head.min.js"></script>
+		<script src="<?php echo URL; ?>/preso/js/reveal.min.js"></script>
 
 		<script>
 
@@ -666,11 +686,11 @@ function secure_endpoint_callback_function(){
 
 				// Optional libraries used to extend on reveal.js
 				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '<?php echo URL; ?>/presp/lib/js/classList.js', condition: function() { return !document.body.classList; } },
 					//{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					//{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '<?php echo URL; ?>/preso/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '<?php echo URL; ?>/preso/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
 					// { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
 				]
 			});
