@@ -1,7 +1,12 @@
 <?php
 
 	define('URL',"http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-	
+	if($_SERVER['HTTP_HOST'] == 'presentation.dev'){
+		define('DEMOURL',"http://".$_SERVER['HTTP_HOST']."/demo/");
+	}else{
+		define('DEMOURL',"http://".$_SERVER['HTTP_HOST']."/pjsbackagain/demo/");
+	}
+
 ?><!doctype html>
 <html lang="en">
 
@@ -216,7 +221,7 @@ function my_callback_function_1(){
 
 }</code></pre>
 
-<small><a href="<?php echo URL; ?>/demo/wp-admin/admin-ajax.php?action=my_action_1" target="_blank">Example</a></small>
+<small><a href="<?php echo DEMOURL; ?>wp-admin/admin-ajax.php?action=my_action_1" target="_blank">Example</a></small>
 	
 						
 					</section>
@@ -240,7 +245,7 @@ $.ajax({
 
 });</code></pre>
 						<small><a href="https://gist.github.com/nickpelton/11147744" target="_blank">Gist</a></small><br>
-						<small><a href="<?php echo URL; ?>/demo/s3/" target="_blank">Example</a></small>
+						<small><a href="<?php echo DEMOURL; ?>s3/" target="_blank">Example</a></small>
 				</section>
 
 
@@ -323,7 +328,7 @@ function load_post_callback(){
   	$('#displayData').append(html); // Note one insert
 });</code></pre>
 						<small><a href="https://gist.github.com/nickpelton/11327034" target="_blank">Gist</a></small><br>
-						<small><a href="<?php echo URL; ?>/demo/s4" target="_blank">Demo</a></small>
+						<small><a href="<?php echo DEMOURL; ?>s4" target="_blank">Example</a></small>
 				</section>
 
 			<section data-background="<?php echo URL; ?>/img/circle.png" data-background-size="90%">
@@ -430,7 +435,7 @@ function save_votes_callback_function(){
 
 });</code></pre>
 						<small><a href="https://gist.github.com/nickpelton/8b269b463112ebf74a3c" target="_blank">Gist</a></small><br>
-						<small><a href="<?php echo URL; ?>/demo/s5/" target="_blank">Example</a></small>
+						<small><a href="<?php echo DEMOURL; ?>s5/" target="_blank">Example</a></small>
 				</section>
 
 			
@@ -550,7 +555,7 @@ function secure_endpoint_callback_function(){
 }
 </code></pre>
 		<small><a href="https://gist.github.com/nickpelton/11327670" target="_blank">Gist</a></small><br>
-						<small><a href="<?php echo URL; ?>/demo/s9/" target="_blank">Example</a></small>
+						<small><a href="<?php echo DEMOURL; ?>s9/" target="_blank">Example</a></small>
 			</section>
 
 
@@ -569,7 +574,7 @@ function secure_endpoint_callback_function(){
 						</ol>
 					<div>
 					<br>
-					<small><a href="<?php echo URL; ?>/demo/s6" target="_blank">Demo</a></small>
+					<small><a href="<?php echo DEMOURL; ?>s6" target="_blank">Example</a></small>
 					</div>
 
 			</section>
@@ -586,7 +591,7 @@ function secure_endpoint_callback_function(){
 						</ol>
 					<div>
 					<br>
-					<small><a href="<?php echo URL; ?>/demo/s7" target="_blank">Demo</a></small>
+					<small><a href="<?php echo DEMOURL; ?>s7" target="_blank">Example</a></small>
 					</div>
 
 			</section>
@@ -602,7 +607,7 @@ function secure_endpoint_callback_function(){
 						</ol>
 					<div>
 					<br>
-					<small><a href="<?php echo URL; ?>/demo/s8" target="_blank">Demo</a></small>
+					<small><a href="<?php echo DEMOURL; ?>s8" target="_blank">Example</a></small>
 					</div>
 
 			</section>
