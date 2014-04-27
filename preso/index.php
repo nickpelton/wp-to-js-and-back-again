@@ -4,7 +4,7 @@
 	if($_SERVER['HTTP_HOST'] == 'presentation.dev'){
 		define('DEMOURL',"http://".$_SERVER['HTTP_HOST']."/demo/");
 	}else{
-		define('DEMOURL',"http://".$_SERVER['HTTP_HOST']."/pjsbackagain/demo/");
+		define('DEMOURL',"http://".$_SERVER['HTTP_HOST']."/wpjsbackagain/demo/");
 	}
 
 ?><!doctype html>
